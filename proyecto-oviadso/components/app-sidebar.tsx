@@ -1,7 +1,7 @@
-"use client"
+"use client";
 
-import { useState } from "react"
-import Link from "next/link"
+import { useState } from "react";
+import Link from "next/link";
 
 import {
   Sidebar,
@@ -13,7 +13,7 @@ import {
   SidebarMenu,
   SidebarMenuButton,
   SidebarMenuItem,
-} from "@/components/ui/sidebar"
+} from "@/components/ui/sidebar";
 
 import {
   LayoutDashboard,
@@ -27,8 +27,7 @@ import {
   User,
   ChevronDown,
   ChevronRight,
-  
-} from "lucide-react"
+} from "lucide-react";
 
 const items = [
   {
@@ -117,34 +116,58 @@ const items = [
       { title: "Formulario Responsables", url: "/Dashboard/responsibles/form" },
     ],
   },
-]
+];
 
 export function AppSidebar() {
-  const [openMenu, setOpenMenu] = useState<string | null>(null)
+  const [openMenu, setOpenMenu] = useState<string | null>(null);
 
   return (
-    <Sidebar>
-      <SidebarHeader>
-        <h2 className="px-4 py-2 font-bold">OVIADSO</h2>
+    <Sidebar className="border-r border-color-border bg-fondo">
+
+      
+      <SidebarHeader className="border-b border-color-border bg-white">
+
+        <h2 className="px-4 py-4 text-xl font-bold text-color-title">
+          OVIADSO
+        </h2>
+
       </SidebarHeader>
 
-      <SidebarContent>
+
+      
+      <SidebarContent className="bg-fondo">
+
         <SidebarGroup>
+
           <SidebarGroupContent>
+
             <SidebarMenu>
 
               {items.map((item) => (
+
                 <SidebarMenuItem key={item.title}>
 
                   {item.children ? (
+
                     <>
+
+                    
                       <SidebarMenuButton
                         onClick={() =>
                           setOpenMenu(
-                            openMenu === item.title ? null : item.title
+                            openMenu === item.title
+                              ? null
+                              : item.title
                           )
                         }
+                        className="
+                          text-color-title
+                          hover:bg-amarillo-claro
+                          hover:text-color-title
+                          transition-colors
+                        "
                       >
+
                         <item.icon />
 
                         <span className="flex-1">
@@ -156,53 +179,123 @@ export function AppSidebar() {
                         ) : (
                           <ChevronRight size={16} />
                         )}
+
                       </SidebarMenuButton>
 
+
+                      
                       {openMenu === item.title && (
-                        <div className="ml-8 mt-2 flex flex-col gap-2">
+
+                        <div
+                          className="
+                            ml-8
+                            mt-2
+                            flex
+                            flex-col
+                            gap-2
+                            border-l-2
+                            border-btn-confim
+                            pl-4
+                          "
+                        >
 
                           {item.children.map((child) => (
+
                             <Link
                               key={child.title}
                               href={child.url}
-                              className="text-sm hover:underline"
+                              className="
+                                text-sm
+                                text-color-subtitle
+                                hover:text-btn-confim
+                                transition-colors
+                              "
                             >
                               {child.title}
                             </Link>
+
                           ))}
 
                         </div>
+
                       )}
+
                     </>
+
                   ) : (
-                    <SidebarMenuButton asChild>
+
+                    <SidebarMenuButton
+                      asChild
+                      className="
+                        text-color-title
+                        hover:bg-amarillo-claro
+                        hover:text-color-title
+                        transition-colors
+                      "
+                    >
+
                       <Link href={item.url}>
+
                         <item.icon />
-                        <span>{item.title}</span>
+
+                        <span>
+                          {item.title}
+                        </span>
+
                       </Link>
+
                     </SidebarMenuButton>
+
                   )}
 
                 </SidebarMenuItem>
+
               ))}
 
             </SidebarMenu>
+
           </SidebarGroupContent>
+
         </SidebarGroup>
+
       </SidebarContent>
 
-      <SidebarFooter>
+
+      
+      <SidebarFooter className="border-t border-color-border bg-white">
+
         <SidebarMenu>
+
           <SidebarMenuItem>
-            <SidebarMenuButton asChild>
+
+            <SidebarMenuButton
+              asChild
+              className="
+                text-color-title
+                hover:bg-amarillo-claro
+                hover:text-color-title
+                transition-colors
+              "
+            >
+
               <Link href="/responsable">
+
                 <User />
-                <span>Responsable</span>
+
+                <span>
+                  Responsable
+                </span>
+
               </Link>
+
             </SidebarMenuButton>
+
           </SidebarMenuItem>
+
         </SidebarMenu>
+
       </SidebarFooter>
+
     </Sidebar>
-  )
+  );
 }

@@ -1,59 +1,48 @@
-import { SidebarProvider, SidebarTrigger } from "@/components/ui/sidebar"
-import { AppSidebar } from "@/components/app-sidebar"
-
+import { SidebarProvider, SidebarTrigger } from "@/components/ui/sidebar";
+import { AppSidebar } from "@/components/app-sidebar";
 
 export default function Layout({
- children
+  children,
 }: {
- children: React.ReactNode
+  children: React.ReactNode;
 }) {
+  return (
+    <SidebarProvider>
 
+      
+      <AppSidebar />
 
-return (
+   
+      <main className="w-full min-h-screen bg-fondo">
 
-<SidebarProvider>
+        
+        <div
+          className="
+            p-5
+            flex
+            items-center
+            gap-3
+            bg-white
+            border-b
+            border-color-border
+            shadow-sm
+          "
+        >
 
+          
+          <SidebarTrigger />
 
-<AppSidebar />
+         
+          <h1 className="text-2xl font-bold text-color-title">
+            OVIADSO
+          </h1>
 
+        </div>
 
-<main className="
-w-full
-min-h-screen
-bg-gray-50
-">
+        {children}
 
+      </main>
 
-<div className="
-p-5
-flex
-items-center
-gap-3
-">
-
-<SidebarTrigger />
-
-
-<h1 className="
-text-2xl
-font-bold
-text-orange-500
-">
-OVIADSO
-</h1>
-
-
-</div>
-
-
-{children}
-
-
-</main>
-
-
-</SidebarProvider>
-
-)
-
+    </SidebarProvider>
+  );
 }
